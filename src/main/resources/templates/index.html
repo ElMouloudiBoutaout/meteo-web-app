@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- META SECTION -->
+    <title>Example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- END META SECTION -->
+    <!--  BEGIN STYLE -->
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            padding: 1px;
+        }
+    </style>
+    <!--  END STYLE -->
+
+</head>
+<body>
+
+<form class="example" >
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+
+<form action="#" th:action="@{/}" th:object="${search}">
+    <input type="text" placeholder="Search.." name="search">
+    <button type="submit"><i class="fa fa-search"></i></button>
+    <div th:if="${not #lists.isEmpty(stationInformation)}">
+        <h2>Search Results</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>MAX</th>
+                <th>MIN</th>
+                <th>AVG</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="stationInfo : ${stationInformation}">
+                <td th:text="${stationInfo.id}">Text ...</td>
+                <td th:text="${stationInfo.tmax}">Text ...</td>
+                <td th:text="${stationInfo.tmin}">Text ...</td>
+                <td th:text="${stationInfo.tavg}">Text...</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>
